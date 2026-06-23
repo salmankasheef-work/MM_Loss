@@ -14,10 +14,10 @@
   --card:#ffffff;--border:#c6f0d5;--border2:#a3e5b9;
   --text:#0f1f0f;--text2:#1a3a1a;--text3:#2d5a2d;--dim:#5a8a5a;--muted:#8aaa8a;
   --red:#dc2626;--redbg:#fef2f2;--amber:#d97706;--amberbg:#fffbeb;--blue:#2563eb;--bluebg:#eff6ff;
-  --sh:0 2px 8px rgba(22,163,74,0.10),0 1px 3px rgba(0,0,0,0.05);
-  --shm:0 8px 28px rgba(22,163,74,0.18),0 3px 8px rgba(0,0,0,0.07);
-  --shl:0 16px 48px rgba(22,163,74,0.22),0 6px 16px rgba(0,0,0,0.09);
-  --r:12px;--rl:20px;--tr:0.18s ease;
+  --sh:0 2px 8px rgba(22,163,74,.10),0 1px 3px rgba(0,0,0,.05);
+  --shm:0 8px 28px rgba(22,163,74,.18),0 3px 8px rgba(0,0,0,.07);
+  --shl:0 16px 48px rgba(22,163,74,.22),0 6px 16px rgba(0,0,0,.09);
+  --r:12px;--rl:20px;--tr:.18s ease;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:14px}
@@ -27,45 +27,33 @@ input,select{font-family:inherit}
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:var(--bg2)}
 ::-webkit-scrollbar-thumb{background:var(--g300);border-radius:3px}
-
-/* ── ANIMATED BG ─── */
 #bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:0.15;animation:orbFloat linear infinite}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.15;animation:orbFloat linear infinite}
 .o1{width:500px;height:500px;background:radial-gradient(var(--g400),var(--g200));top:-150px;left:-150px;animation-duration:20s}
 .o2{width:350px;height:350px;background:radial-gradient(var(--g300),var(--g100));top:40%;right:-100px;animation-duration:25s;animation-delay:-9s}
 .o3{width:280px;height:280px;background:radial-gradient(var(--g500),var(--g300));bottom:5%;left:25%;animation-duration:18s;animation-delay:-5s}
 .o4{width:220px;height:220px;background:radial-gradient(var(--g200),transparent);bottom:-60px;right:25%;animation-duration:22s;animation-delay:-13s}
-@keyframes orbFloat{0%{transform:translate(0,0) scale(1)}25%{transform:translate(50px,-40px) scale(1.06)}50%{transform:translate(25px,50px) scale(0.94)}75%{transform:translate(-40px,25px) scale(1.03)}100%{transform:translate(0,0) scale(1)}}
+@keyframes orbFloat{0%{transform:translate(0,0) scale(1)}25%{transform:translate(50px,-40px) scale(1.06)}50%{transform:translate(25px,50px) scale(.94)}75%{transform:translate(-40px,25px) scale(1.03)}100%{transform:translate(0,0) scale(1)}}
 .particle{position:absolute;border-radius:50%;pointer-events:none;animation:rise linear infinite}
-@keyframes rise{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:0.5}100%{transform:translateY(-120px) scale(1.2);opacity:0}}
-
-/* ── HEADER ─── */
-#hdr{
-  position:fixed;top:0;left:0;right:0;z-index:100;height:56px;
-  background:rgba(255,255,255,0.88);backdrop-filter:blur(24px) saturate(1.6);
-  border-bottom:1.5px solid var(--border);
-  display:flex;align-items:center;padding:0 22px;gap:0;
-  box-shadow:0 1px 12px rgba(22,163,74,0.08);
-}
-.logo{display:flex;align-items:center;gap:10px;min-width:210px;font-size:13px;font-weight:800;color:var(--g700);letter-spacing:0.07em;text-transform:uppercase}
-.logo-ico{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--g500),var(--g700));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(22,163,74,0.4)}
+@keyframes rise{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:.5}100%{transform:translateY(-120px) scale(1.2);opacity:0}}
+#hdr{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(255,255,255,.88);backdrop-filter:blur(24px) saturate(1.6);border-bottom:1.5px solid var(--border);display:flex;align-items:center;padding:0 22px;box-shadow:0 1px 12px rgba(22,163,74,.08)}
+.logo{display:flex;align-items:center;gap:10px;min-width:210px;font-size:13px;font-weight:800;color:var(--g700);letter-spacing:.07em;text-transform:uppercase}
+.logo-ico{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--g500),var(--g700));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(22,163,74,.4)}
 .logo-ico svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}
-#hdr-kpis{display:flex;align-items:center;gap:0;flex:1;border-left:1.5px solid var(--border);margin-left:14px;padding-left:14px}
+#hdr-kpis{display:flex;align-items:center;flex:1;border-left:1.5px solid var(--border);margin-left:14px;padding-left:14px}
 .hk{display:flex;flex-direction:column;padding:0 18px;border-right:1.5px solid var(--border);min-width:115px}
-.hk .hl{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:2px}
+.hk .hl{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px}
 .hk .hv{font-size:15px;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums}
 .hk .hv.gr{color:var(--g600)}.hk .hv.rd{color:var(--red)}.hk .hv.am{color:var(--amber)}
 .hdr-acts{margin-left:auto;display:flex;align-items:center;gap:8px}
-.btn-up{display:flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--g500),var(--g700));color:#fff;font-weight:700;font-size:12px;padding:8px 18px;border-radius:9px;letter-spacing:0.03em;box-shadow:0 4px 14px rgba(22,163,74,0.4);transition:all var(--tr)}
-.btn-up:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(22,163,74,0.5)}
+.btn-up{display:flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--g500),var(--g700));color:#fff;font-weight:700;font-size:12px;padding:8px 18px;border-radius:9px;letter-spacing:.03em;box-shadow:0 4px 14px rgba(22,163,74,.4);transition:all var(--tr)}
+.btn-up:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(22,163,74,.5)}
 .btn-ico{width:34px;height:34px;border-radius:8px;border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--g600);background:var(--bg2);transition:all var(--tr)}
 .btn-ico:hover{background:var(--g100);border-color:var(--g400);transform:translateY(-1px)}
 .btn-ico svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
-
-/* ── LAYOUT ─── */
 #app{display:flex;margin-top:56px;min-height:calc(100vh - 56px);position:relative;z-index:1}
-#sidebar{width:224px;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-right:1.5px solid var(--border);display:flex;flex-direction:column;padding:18px 0;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;flex-shrink:0}
-.sb-lbl{font-size:9px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:0.12em;padding:0 18px;margin-bottom:5px}
+#sidebar{width:224px;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border-right:1.5px solid var(--border);display:flex;flex-direction:column;padding:18px 0;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;flex-shrink:0}
+.sb-lbl{font-size:9px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;padding:0 18px;margin-bottom:5px}
 .sb-it{display:flex;align-items:center;gap:10px;padding:9px 18px;font-size:13px;font-weight:500;color:var(--dim);cursor:pointer;transition:all var(--tr);border-left:2.5px solid transparent;margin:1px 0}
 .sb-it svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
 .sb-it:hover{color:var(--g700);background:var(--g50)}
@@ -73,41 +61,32 @@ input,select{font-family:inherit}
 .sb-div{height:1px;background:var(--border);margin:12px 18px}
 #sb-filt{padding:4px 18px;font-size:11px;color:var(--dim);line-height:1.9}
 #main{flex:1;min-width:0;padding:22px;overflow-y:auto}
-
-/* ── BREADCRUMB ─── */
 #bc{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);margin-bottom:16px;flex-wrap:wrap}
 .bc-i{cursor:pointer;padding:2px 5px;border-radius:4px;transition:all var(--tr)}
 .bc-i:hover{color:var(--g600);background:var(--g50)}
-.bc-i.cur{color:var(--text2);font-weight:600;cursor:default}
-.bc-i.cur:hover{background:transparent}
+.bc-i.cur{color:var(--text2);font-weight:600;cursor:default}.bc-i.cur:hover{background:transparent}
 .bc-sep{color:var(--border2);font-size:14px}
-
-/* ── FILTER ROW ─── */
 #frow{display:none;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap}
 .fc{display:flex;align-items:center;gap:7px;background:var(--white);border:1.5px solid var(--border2);border-radius:8px;padding:6px 12px;font-size:12px;box-shadow:var(--sh);transition:border-color var(--tr)}
 .fc:focus-within{border-color:var(--g400)}
-.fc label{color:var(--muted);font-size:10px;font-weight:700;letter-spacing:0.06em;white-space:nowrap}
+.fc label{color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.06em;white-space:nowrap}
 .fc select{background:transparent;border:none;color:var(--text2);font-size:12px;outline:none;cursor:pointer;font-weight:600}
 .btn-cf{font-size:11px;font-weight:700;color:var(--dim);padding:6px 12px;border:1.5px solid var(--border);border-radius:8px;background:var(--white);transition:all var(--tr)}
 .btn-cf:hover{color:var(--red);border-color:var(--red);background:var(--redbg)}
 .fbdg{display:flex;align-items:center;gap:5px;background:var(--g100);border:1.5px solid var(--g300);color:var(--g700);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
-.fbdg .x{cursor:pointer;opacity:0.6;transition:opacity var(--tr)}.fbdg .x:hover{opacity:1}
-
-/* ── SECTION TITLE ─── */
+.fbdg .x{cursor:pointer;opacity:.6;transition:opacity var(--tr)}.fbdg .x:hover{opacity:1}
 .stitle{font-size:17px;font-weight:800;color:var(--text);margin-bottom:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .stitle .ac{color:var(--g600)}.stitle .sub{font-size:12px;color:var(--muted);font-weight:400}
-
-/* ── LANDING ─── */
 #landing{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:62vh;padding:40px 20px;text-align:center}
-.lbadge{display:inline-flex;align-items:center;gap:6px;background:var(--g100);border:1.5px solid var(--g300);color:var(--g700);padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:18px;letter-spacing:0.05em}
+.lbadge{display:inline-flex;align-items:center;gap:6px;background:var(--g100);border:1.5px solid var(--g300);color:var(--g700);padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:18px;letter-spacing:.05em}
 .ldot{width:6px;height:6px;border-radius:50%;background:var(--g500);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.4)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
 .ltitle{font-size:32px;font-weight:800;color:var(--text);margin-bottom:10px;line-height:1.15}
 .ltitle span{color:var(--g600)}
 .lsub{font-size:14px;color:var(--dim);max-width:460px;margin:0 auto 48px}
 .bkt-grid{display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
-.bkt{background:var(--white);border:2px solid var(--border);border-radius:var(--rl);padding:36px 44px;cursor:pointer;transition:all 0.22s ease;min-width:256px;position:relative;overflow:hidden;box-shadow:var(--sh)}
-.bkt::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--g50),var(--g100));opacity:0;transition:opacity 0.22s}
+.bkt{background:var(--white);border:2px solid var(--border);border-radius:var(--rl);padding:36px 44px;cursor:pointer;transition:all .22s ease;min-width:256px;position:relative;overflow:hidden;box-shadow:var(--sh)}
+.bkt::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--g50),var(--g100));opacity:0;transition:opacity .22s}
 .bkt:hover{border-color:var(--g400);transform:translateY(-7px);box-shadow:var(--shl)}
 .bkt:hover::after{opacity:1}
 .bkt-ico{font-size:46px;margin-bottom:16px;display:block;animation:flt 3s ease-in-out infinite;position:relative;z-index:1}
@@ -117,59 +96,48 @@ input,select{font-family:inherit}
 .bkt-hint{font-size:12px;color:var(--dim);position:relative;z-index:1}
 .bkt-stats{margin-top:20px;padding-top:18px;border-top:1px solid var(--border);display:flex;gap:18px;justify-content:center;position:relative;z-index:1}
 .bkt-kv{font-size:18px;font-weight:800;color:var(--g600)}
-.bkt-kl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em}
+.bkt-kl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .bkt-arr{position:absolute;right:14px;top:14px;z-index:2;width:28px;height:28px;border-radius:50%;background:var(--g100);display:flex;align-items:center;justify-content:center;color:var(--g600);font-size:16px;font-weight:700;transition:all var(--tr)}
 .bkt:hover .bkt-arr{background:var(--g500);color:#fff;transform:translateX(3px)}
-
-/* ── KPI CARDS ─── */
 .krow{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-bottom:20px}
 .kcard{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh);position:relative;overflow:hidden;transition:all var(--tr)}
 .kcard:hover{box-shadow:var(--shm);transform:translateY(-2px)}
 .kcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--acc,var(--g500))}
 .kcard.a1{--acc:var(--g500)}.kcard.a2{--acc:var(--red)}.kcard.a3{--acc:var(--amber)}.kcard.a4{--acc:var(--blue)}
-.klbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px}
+.klbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
 .kval{font-size:25px;font-weight:800;color:var(--text);line-height:1;font-variant-numeric:tabular-nums}
 .kval.gr{color:var(--g600)}.kval.rd{color:var(--red)}.kval.am{color:var(--amber)}
-.ksub{font-size:11px;color:var(--muted);margin-top:4px}
-
-/* ── DC CARDS ─── */
 .dcg{display:grid;gap:11px;grid-template-columns:repeat(auto-fill,minmax(216px,1fr));margin-bottom:26px}
 .dcc{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:16px;cursor:pointer;transition:all var(--tr);box-shadow:var(--sh);position:relative}
 .dcc:hover{border-color:var(--g400);box-shadow:var(--shm);transform:translateY(-3px)}
 .dc-n{font-size:13px;font-weight:700;color:var(--text);margin-bottom:9px;padding-right:26px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dc-rank{position:absolute;top:12px;right:12px;width:21px;height:21px;border-radius:50%;background:var(--g100);color:var(--g600);font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center}
 .dc-bar-w{height:3px;background:var(--bg3);border-radius:2px;margin-bottom:10px;overflow:hidden}
-.dc-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--g300),var(--g600));transition:width 0.7s ease}
+.dc-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--g300),var(--g600));transition:width .7s ease}
 .dc-sts{display:flex;justify-content:space-between;gap:6px}
 .dc-st .sv{font-size:14px;font-weight:700;color:var(--g600);font-variant-numeric:tabular-nums}
 .dc-st .sl{font-size:10px;color:var(--muted);text-transform:uppercase}
-
-/* ── AGEING CARDS ─── */
 .ageg{display:grid;gap:11px;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));margin-bottom:26px}
 .agec{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:16px;cursor:pointer;transition:all var(--tr);box-shadow:var(--sh)}
 .agec:hover{border-color:var(--g400);box-shadow:var(--shm);transform:translateY(-3px)}
 .age-lbl{font-size:12px;font-weight:700;color:var(--g600);margin-bottom:7px}
 .age-bw{height:5px;background:var(--bg3);border-radius:3px;margin-bottom:10px;overflow:hidden}
-.age-b{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--g300),var(--g500));transition:width 0.7s}
+.age-b{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--g300),var(--g500));transition:width .7s}
 .age-row{display:flex;justify-content:space-between;align-items:flex-end}
 .age-c .cv{font-size:15px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
 .age-c .cl{font-size:10px;color:var(--muted)}
 .age-pct{font-size:22px;font-weight:800;color:var(--g500)}
-
-/* ── CHARTS ─── */
 .chg{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));margin-bottom:26px}
 .chc{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:18px;box-shadow:var(--sh);transition:box-shadow var(--tr)}
 .chc:hover{box-shadow:var(--shm)}
 .chc.full{grid-column:1/-1}
-.ch-hdr{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.ch-hdr{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:flex;align-items:center;gap:6px}
 .ch-hdr::before{content:'';width:3px;height:13px;border-radius:2px;background:var(--g400);flex-shrink:0}
 .ch-wrap{position:relative;height:210px}
 .ch-wrap.tall{height:270px}
-
-/* ── TABLE ─── */
 .ttbar{display:flex;align-items:center;gap:9px;margin-bottom:10px;flex-wrap:wrap}
 .srch{display:flex;align-items:center;gap:7px;background:var(--white);border:1.5px solid var(--border2);border-radius:8px;padding:7px 12px;flex:1;min-width:190px;max-width:330px;transition:border-color var(--tr)}
-.srch:focus-within{border-color:var(--g400);box-shadow:0 0 0 3px rgba(34,197,94,0.12)}
+.srch:focus-within{border-color:var(--g400);box-shadow:0 0 0 3px rgba(34,197,94,.12)}
 .srch svg{width:13px;height:13px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
 .srch input{background:transparent;border:none;outline:none;color:var(--text);font-size:13px;width:100%}
 .srch input::placeholder{color:var(--muted)}
@@ -179,13 +147,12 @@ input,select{font-family:inherit}
 .bexp.xl:hover{border-color:var(--blue);color:var(--blue);background:var(--bluebg)}
 .twrap{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);overflow-x:auto;box-shadow:var(--sh)}
 table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}
-thead th{background:var(--bg2);padding:9px 13px;text-align:left;color:var(--dim);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;border-bottom:1.5px solid var(--border);cursor:pointer;user-select:none;position:sticky;top:0;z-index:2;transition:color var(--tr)}
+thead th{background:var(--bg2);padding:9px 13px;text-align:left;color:var(--dim);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;border-bottom:1.5px solid var(--border);cursor:pointer;user-select:none;position:sticky;top:0;z-index:2;transition:color var(--tr)}
 thead th:hover{color:var(--g600)}
-thead th .si{opacity:0.4;font-size:9px;margin-left:2px}
+thead th .si{opacity:.4;font-size:9px;margin-left:2px}
 thead th.sa .si::after{content:'▲'}thead th.sd .si::after{content:'▼'}
 tbody tr{border-bottom:1px solid var(--bg3);transition:background var(--tr)}
-tbody tr:hover{background:var(--g50)}
-tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:var(--g50)}tbody tr:last-child{border-bottom:none}
 tbody td{padding:8px 13px;color:var(--text3)}
 tbody td.mn{font-family:'Courier New',monospace;font-size:11px;color:var(--dim)}
 tbody td.nr{text-align:right;font-variant-numeric:tabular-nums}
@@ -195,16 +162,14 @@ tbody td.gb{color:var(--g600);font-weight:700}
 .pgbs{display:flex;gap:5px}
 .pgb{min-width:30px;height:30px;padding:0 8px;background:var(--white);border:1.5px solid var(--border);color:var(--dim);border-radius:6px;font-size:12px;transition:all var(--tr);font-weight:500}
 .pgb:hover:not(:disabled){border-color:var(--g400);color:var(--g600);background:var(--g50)}
-.pgb:disabled{opacity:0.3;cursor:default}
+.pgb:disabled{opacity:.3;cursor:default}
 .pgb.cur{background:var(--g500);color:#fff;border-color:var(--g500);font-weight:700}
-
-/* ── UPLOAD MODAL ─── */
-#upmod{display:none;position:fixed;inset:0;z-index:200;background:rgba(10,30,10,0.45);backdrop-filter:blur(8px);align-items:center;justify-content:center}
+#upmod{display:none;position:fixed;inset:0;z-index:200;background:rgba(10,30,10,.45);backdrop-filter:blur(8px);align-items:center;justify-content:center}
 #upmod.open{display:flex}
-.mbox{background:#fff;border:2px solid var(--border2);border-radius:var(--rl);padding:28px;width:540px;max-width:96vw;max-height:92vh;overflow-y:auto;box-shadow:var(--shl);animation:mIn 0.28s cubic-bezier(0.34,1.56,0.64,1)}
-@keyframes mIn{from{transform:scale(0.85) translateY(24px);opacity:0}}
+.mbox{background:#fff;border:2px solid var(--border2);border-radius:var(--rl);padding:28px;width:540px;max-width:96vw;max-height:92vh;overflow-y:auto;box-shadow:var(--shl);animation:mIn .28s cubic-bezier(.34,1.56,.64,1)}
+@keyframes mIn{from{transform:scale(.85) translateY(24px);opacity:0}}
 .mhdr{display:flex;align-items:center;gap:11px;margin-bottom:5px}
-.mhdr-ico{width:38px;height:38px;border-radius:10px;flex-shrink:0;background:linear-gradient(135deg,var(--g400),var(--g700));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(22,163,74,0.38)}
+.mhdr-ico{width:38px;height:38px;border-radius:10px;flex-shrink:0;background:linear-gradient(135deg,var(--g400),var(--g700));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(22,163,74,.38)}
 .mhdr-ico svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}
 .mtitle{font-size:17px;font-weight:800;color:var(--text)}
 .mclose{margin-left:auto;width:30px;height:30px;border-radius:50%;background:var(--bg2);color:var(--dim);font-size:16px;display:flex;align-items:center;justify-content:center;transition:all var(--tr)}
@@ -223,66 +188,47 @@ tbody td.gb{color:var(--g600);font-weight:700}
 .mrow{display:flex;gap:8px}
 .mbtn{flex:1;padding:10px 8px;border-radius:10px;font-size:12px;font-weight:600;border:1.5px solid var(--border);color:var(--dim);background:var(--bg2);transition:all var(--tr);text-align:center}
 .mbtn:hover{border-color:var(--g300);color:var(--g600)}
-.mbtn.on{background:linear-gradient(135deg,var(--g500),var(--g700));color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(22,163,74,0.4)}
+.mbtn.on{background:linear-gradient(135deg,var(--g500),var(--g700));color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(22,163,74,.4)}
 .mbtn .mi{font-size:16px;margin-bottom:2px;display:block}
-.mbtn .ms{font-size:10px;opacity:0.85}
+.mbtn .ms{font-size:10px;opacity:.85}
 .wbox{background:var(--amberbg);border:1.5px solid #fcd34d;border-radius:8px;padding:10px 14px;font-size:11px;color:#92400e;margin-top:10px;display:none}
 .prg{height:7px;background:var(--bg3);border-radius:4px;margin:14px 0;display:none;overflow:hidden}
 .prg.show{display:block}
-.pb{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--g300),var(--g600));transition:width 0.3s ease;position:relative;overflow:hidden}
-.pb::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.5),transparent);animation:shim 1.4s infinite}
+.pb{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--g300),var(--g600));transition:width .3s ease;position:relative;overflow:hidden}
+.pb::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);animation:shim 1.4s infinite}
 @keyframes shim{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
 .sbox{border-radius:8px;padding:10px 14px;font-size:12px;margin-bottom:13px;display:none;border:1.5px solid var(--border);background:var(--bg2);color:var(--dim)}
 .sbox.ok{background:var(--g50);border-color:var(--g300);color:var(--g700)}
 .sbox.err{background:var(--redbg);border-color:#fca5a5;color:var(--red)}
-.bup{width:100%;padding:13px;border-radius:10px;font-size:13px;font-weight:800;background:linear-gradient(135deg,var(--g500),var(--g700));color:#fff;letter-spacing:0.03em;box-shadow:0 5px 18px rgba(22,163,74,0.42);transition:all var(--tr)}
-.bup:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 26px rgba(22,163,74,0.54)}
-.bup:disabled{opacity:0.38;cursor:default;transform:none}
+.bup{width:100%;padding:13px;border-radius:10px;font-size:13px;font-weight:800;background:linear-gradient(135deg,var(--g500),var(--g700));color:#fff;letter-spacing:.03em;box-shadow:0 5px 18px rgba(22,163,74,.42);transition:all var(--tr)}
+.bup:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 26px rgba(22,163,74,.54)}
+.bup:disabled{opacity:.38;cursor:default;transform:none}
 .log-sec{margin-top:20px;display:none}
 .log-t{font-size:12px;font-weight:700;color:var(--dim);margin-bottom:9px}
 .log-w{border-radius:8px;overflow:hidden;border:1px solid var(--border)}
 .logt{width:100%;border-collapse:collapse;font-size:11px}
 .logt th{background:var(--bg2);padding:7px 10px;text-align:left;color:var(--muted);font-weight:700}
 .logt td{padding:7px 10px;color:var(--dim);border-top:1px solid var(--bg3)}
-
-/* ── LOADING ─── */
-#lov{display:none;position:fixed;inset:0;z-index:300;background:rgba(240,253,248,0.8);backdrop-filter:blur(6px);align-items:center;justify-content:center;flex-direction:column;gap:14px}
+#lov{display:none;position:fixed;inset:0;z-index:300;background:rgba(240,253,248,.8);backdrop-filter:blur(6px);align-items:center;justify-content:center;flex-direction:column;gap:14px}
 #lov.show{display:flex}
-.spin{width:44px;height:44px;border-radius:50%;border:3px solid var(--g200);border-top-color:var(--g500);animation:sp 0.65s linear infinite}
+.spin{width:44px;height:44px;border-radius:50%;border:3px solid var(--g200);border-top-color:var(--g500);animation:sp .65s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
 .spinm{font-size:13px;font-weight:600;color:var(--g700)}
-
-/* ── TOASTS ─── */
 #ts{position:fixed;bottom:22px;right:22px;z-index:400;display:flex;flex-direction:column-reverse;gap:7px}
-.toast{background:#fff;border-radius:10px;padding:11px 15px;font-size:12px;color:var(--text);max-width:300px;box-shadow:var(--shl);animation:tIn 0.22s ease;display:flex;align-items:flex-start;gap:9px;border-left:4px solid var(--g400)}
+.toast{background:#fff;border-radius:10px;padding:11px 15px;font-size:12px;color:var(--text);max-width:300px;box-shadow:var(--shl);animation:tIn .22s ease;display:flex;align-items:flex-start;gap:9px;border-left:4px solid var(--g400)}
 .toast.err{border-left-color:var(--red)}.toast.warn{border-left-color:var(--amber)}
 .tio{font-size:15px;flex-shrink:0}
 @keyframes tIn{from{transform:translateX(22px);opacity:0}}
-
-/* ── EMPTY ─── */
 .empty{text-align:center;padding:52px 22px;color:var(--muted)}
 .empty .ei{font-size:48px;margin-bottom:12px;display:block;animation:flt 3s ease-in-out infinite}
 .empty h3{font-size:15px;font-weight:700;color:var(--dim);margin-bottom:5px}
-
-/* ── RESPONSIVE ─── */
-@media(max-width:768px){#sidebar{display:none}.chg{grid-template-columns:1fr}.hk:nth-child(n+3){display:none}.bkt{min-width:200px;padding:24px 28px}}
+@media(max-width:768px){#sidebar{display:none}.chg{grid-template-columns:1fr}.hk:nth-child(n+3){display:none}}
 </style>
 </head>
 <body>
-
-<div id="bg">
-  <div class="orb o1"></div><div class="orb o2"></div>
-  <div class="orb o3"></div><div class="orb o4"></div>
-</div>
-
-<!-- HEADER -->
+<div id="bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="orb o4"></div></div>
 <header id="hdr">
-  <div class="logo">
-    <div class="logo-ico">
-      <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-    </div>
-    MM Loss Radar
-  </div>
+  <div class="logo"><div class="logo-ico"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>MM Loss Radar</div>
   <div id="hdr-kpis">
     <div class="hk"><span class="hl">Shipments</span><span class="hv gr" id="hk1">—</span></div>
     <div class="hk"><span class="hl">Total Debit</span><span class="hv am" id="hk2">—</span></div>
@@ -294,369 +240,327 @@ tbody td.gb{color:var(--g600);font-weight:700}
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       Upload Data
     </button>
-    <button class="btn-ico" onclick="doRef()" title="Refresh">
-      <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-5"/></svg>
-    </button>
+    <button class="btn-ico" onclick="doRef()" title="Refresh"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-5"/></svg></button>
   </div>
 </header>
-
-<!-- APP -->
 <div id="app">
   <nav id="sidebar">
     <div style="margin-bottom:20px">
       <div class="sb-lbl" style="margin-bottom:8px">Dashboard</div>
-      <div class="sb-it on" data-v="landing" onclick="nav('landing')">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Buckets
-      </div>
-      <div class="sb-it" data-v="charts" onclick="nav('charts')">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics
-      </div>
-      <div class="sb-it" data-v="table" onclick="nav('table')">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Data Table
-      </div>
+      <div class="sb-it on" data-v="landing" onclick="nav('landing')"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Buckets</div>
+      <div class="sb-it" data-v="charts" onclick="nav('charts')"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics</div>
+      <div class="sb-it" data-v="table" onclick="nav('table')"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Data Table</div>
     </div>
     <div class="sb-div"></div>
-    <div style="margin-bottom:20px">
-      <div class="sb-lbl" style="margin-bottom:6px">Active Filters</div>
-      <div id="sb-filt"><span style="color:var(--muted)">None</span></div>
-    </div>
+    <div style="margin-bottom:20px"><div class="sb-lbl" style="margin-bottom:6px">Active Filters</div><div id="sb-filt"><span style="color:var(--muted)">None</span></div></div>
     <div class="sb-div"></div>
     <div>
       <div class="sb-lbl" style="margin-bottom:6px">Actions</div>
-      <div class="sb-it" onclick="openUp()">
-        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Upload CSV
-      </div>
-      <div class="sb-it" onclick="nav('table');expCSV()">
-        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export CSV
-      </div>
+      <div class="sb-it" onclick="openUp()"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Upload CSV</div>
+      <div class="sb-it" onclick="nav('table');expCSV()"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export CSV</div>
     </div>
   </nav>
-
   <main id="main">
     <div id="bc"><span class="bc-i cur">Home</span></div>
     <div id="frow">
-      <div class="fc"><label>REGION</label>
-        <select id="f-reg" onchange="applyF()"><option value="">All Regions</option></select>
-      </div>
-      <div class="fc"><label>BUCKETING</label>
-        <select id="f-bkt" onchange="applyF()"><option value="">All</option></select>
-      </div>
+      <div class="fc"><label>REGION</label><select id="f-reg" onchange="applyF()"><option value="">All Regions</option></select></div>
+      <div class="fc"><label>BUCKETING</label><select id="f-bkt" onchange="applyF()"><option value="">All</option></select></div>
       <button class="btn-cf" onclick="clearF()">✕ Clear</button>
       <div id="fbdgs" style="display:flex;gap:6px;flex-wrap:wrap"></div>
     </div>
     <div id="ct"></div>
   </main>
 </div>
-
-<!-- UPLOAD MODAL -->
 <div id="upmod">
   <div class="mbox">
     <div class="mhdr">
-      <div class="mhdr-ico">
-        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-      </div>
+      <div class="mhdr-ico"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
       <div class="mtitle">Upload MM Loss Data</div>
       <button class="mclose" onclick="closeUp()">✕</button>
     </div>
-    <p class="msub">CSV files with 50k+ rows upload directly to Google Sheets — no size limits.</p>
-
+    <p class="msub">CSV files with 50k+ rows are automatically chunked.</p>
     <div class="dz" id="dz">
       <input type="file" id="fi" accept=".csv" onchange="onPick(event)"/>
-      <div class="dz-ico">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-      </div>
-      <div class="dzt">Drop your CSV here or click to browse</div>
-      <div class="dzs">Works with any size file · 50,000+ rows supported</div>
+      <div class="dz-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div>
+      <div class="dzt">Drop CSV here or click to browse</div>
+      <div class="dzs">Works with 50,000+ rows</div>
     </div>
     <div class="finfo" id="finfo"></div>
-
     <div class="mlbl">Upload Mode</div>
     <div class="mrow">
-      <button class="mbtn on" id="m-app" onclick="setM('append')">
-        <span class="mi">➕</span><b>Append</b><div class="ms">Add to existing data</div>
-      </button>
-      <button class="mbtn" id="m-rep" onclick="setM('replace')">
-        <span class="mi">🔄</span><b>Replace</b><div class="ms">Clear & reload all data</div>
-      </button>
+      <button class="mbtn on" id="m-app" onclick="setM('append')"><span class="mi">➕</span><b>Append</b><div class="ms">Add to existing data</div></button>
+      <button class="mbtn" id="m-rep" onclick="setM('replace')"><span class="mi">🔄</span><b>Replace</b><div class="ms">Clear & reload all data</div></button>
     </div>
     <div class="wbox" id="wbox">⚠️ Replace mode will delete ALL existing data first.</div>
-
     <div class="prg" id="prg"><div class="pb" id="pb" style="width:0%"></div></div>
     <div class="sbox" id="sbox"></div>
-
     <button class="bup" id="bup" onclick="doUp()" disabled>Upload to Google Sheets</button>
-
     <div class="log-sec" id="logsec">
       <div class="log-t">Recent Uploads</div>
-      <div class="log-w"><table class="logt">
-        <thead><tr><th>Time</th><th>File</th><th>Rows</th><th>Mode</th></tr></thead>
-        <tbody id="logb"></tbody>
-      </table></div>
+      <div class="log-w"><table class="logt"><thead><tr><th>Time</th><th>File</th><th>Rows</th><th>Mode</th></tr></thead><tbody id="logb"></tbody></table></div>
     </div>
   </div>
 </div>
-
 <div id="lov"><div class="spin"></div><div class="spinm" id="spm">Loading…</div></div>
 <div id="ts"></div>
 
 <script>
 // ════════════════════════════════════════════════════════════
-//  IMPORTANT: This page runs inside Google Apps Script
-//  via HtmlService. All server calls use google.script.run
-//  which is 100% CORS-free and supports any payload size.
+//  ⚙ SET YOUR APPS SCRIPT WEB APP URL HERE
+//  Deploy → New Deployment → Web App → Anyone → Deploy
+// ════════════════════════════════════════════════════════════
+const API_URL = "https://script.google.com/macros/s/AKfycbzJaWtVQuuxFePYLYbL2nNhYuoVw4DSgBf70vVuo09gvHSISs_XsDBi4xO73glZ1PE/exec";
+const CHUNK   = 200; // rows per chunk — kept small for Apps Script POST body limits
+
+// ════════════════════════════════════════════════════════════
+//  API LAYER
+//  GET  → read operations (KPIs, buckets, table data, etc.)
+//  POST → write operations (uploadChunk only)
+//
+//  Apps Script CORS note: Apps Script always follows redirects
+//  when responding to GET. For POST, we need no-redirect mode.
+//  The workaround: send POST as a fetch with redirect:'follow'
+//  and read the final response.
 // ════════════════════════════════════════════════════════════
 
-const CHUNK = 500; // rows per batch sent to Apps Script
+// GET request — for all read operations
+async function apiGet(action, params={}) {
+  const url = new URL(API_URL);
+  url.searchParams.set("action", action);
+  for (const [k, v] of Object.entries(params)) {
+    if (v !== null && v !== undefined && v !== "") url.searchParams.set(k, String(v));
+  }
+  const res = await fetch(url.toString(), { redirect: "follow" });
+  if (!res.ok) throw new Error("HTTP " + res.status);
+  const data = await res.json();
+  if (data && data.error) throw new Error(data.error);
+  return data;
+}
 
-// ── State ────────────────────────────────────────────────────
+// POST request — for uploadChunk only
+// Apps Script accepts POST but redirects to a new URL for the response.
+// Using redirect:'follow' handles this automatically.
+async function apiPost(action, body) {
+  const url = new URL(API_URL);
+  url.searchParams.set("action", action);
+  const res = await fetch(url.toString(), {
+    method:   "POST",
+    redirect: "follow",
+    headers:  { "Content-Type": "text/plain" }, // text/plain avoids CORS preflight
+    body:     JSON.stringify(body)
+  });
+  if (!res.ok) throw new Error("HTTP " + res.status);
+  const data = await res.json();
+  if (data && data.error) throw new Error(data.error);
+  return data;
+}
+
+// ════════════════════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════════════════════
 const S = {
-  view:'landing', bucket:null, dc:null, ageing:null,
+  view:"landing", bucket:null, dc:null, ageing:null,
   region:null, bucketing:null,
-  sortCol:'', sortDir:'asc', page:1, pageSize:100, search:'',
-  mode:'append', csv:null, file:null, charts:{}
+  sortCol:"", sortDir:"asc", page:1, pageSize:100, search:"",
+  mode:"append", csv:null, file:null, charts:{}
 };
 
-// ════════════════════════════════════════════════════════════
-//  google.script.run WRAPPER
-//  Returns a Promise so we can use async/await
-// ════════════════════════════════════════════════════════════
-function gsr(fnName, ...args) {
-  return new Promise((resolve, reject) => {
-    const runner = google.script.run
-      .withSuccessHandler(resolve)
-      .withFailureHandler(reject);
-    runner[fnName](...args);
-  });
-}
-
-// ── Filter state ─────────────────────────────────────────────
 function F() {
-  return {
-    bucket:    S.bucket    || '',
-    dc:        S.dc        || '',
-    region:    S.region    || '',
-    bucketing: S.bucketing || '',
-    ageing:    S.ageing    || ''
-  };
+  return { bucket:S.bucket||"", dc:S.dc||"", region:S.region||"", bucketing:S.bucketing||"", ageing:S.ageing||"" };
 }
 
+// ════════════════════════════════════════════════════════════
+//  FILTERS
+// ════════════════════════════════════════════════════════════
 function applyF() {
-  S.region    = document.getElementById('f-reg')?.value || null;
-  S.bucketing = document.getElementById('f-bkt')?.value || null;
-  S.page = 1;
-  renderView(); refreshHdr(); refreshBdgs(); refreshSbF();
+  S.region    = document.getElementById("f-reg")?.value || null;
+  S.bucketing = document.getElementById("f-bkt")?.value || null;
+  S.page = 1; renderView(); refreshHdr(); refreshBdgs(); refreshSbF();
 }
-
 function clearF() {
   S.region = S.bucketing = null;
-  const a=document.getElementById('f-reg'), b=document.getElementById('f-bkt');
-  if(a)a.value=''; if(b)b.value='';
+  ["f-reg","f-bkt"].forEach(id=>{const e=document.getElementById(id);if(e)e.value="";});
   S.page=1; renderView(); refreshHdr(); refreshBdgs(); refreshSbF();
 }
-
 function refreshBdgs() {
-  const c=document.getElementById('fbdgs'); if(!c)return;
-  const items=[];
-  if(S.region)    items.push({k:'region',   l:'Region: '+S.region});
-  if(S.bucketing) items.push({k:'bucketing',l:'Bucketing: '+S.bucketing});
-  if(S.bucket)    items.push({k:'bucket',   l:'Bucket: '+S.bucket});
-  if(S.dc)        items.push({k:'dc',       l:'DC: '+S.dc});
-  if(S.ageing)    items.push({k:'ageing',   l:'Ageing: '+S.ageing});
-  c.innerHTML=items.map(i=>`<div class="fbdg">${e(i.l)}<span class="x" onclick="rmF('${i.k}')">✕</span></div>`).join('');
+  const c=document.getElementById("fbdgs"); if(!c) return;
+  const it=[];
+  if(S.region)    it.push({k:"region",    l:"Region: "+S.region});
+  if(S.bucketing) it.push({k:"bucketing", l:"Bucketing: "+S.bucketing});
+  if(S.bucket)    it.push({k:"bucket",    l:"Bucket: "+S.bucket});
+  if(S.dc)        it.push({k:"dc",        l:"DC: "+S.dc});
+  if(S.ageing)    it.push({k:"ageing",    l:"Ageing: "+S.ageing});
+  c.innerHTML=it.map(i=>`<div class="fbdg">${x(i.l)}<span class="x" onclick="rmF('${i.k}')">✕</span></div>`).join("");
 }
-
 function rmF(k) {
-  if(k==='bucket'){S.bucket=null;nav('landing');return;}
-  if(k==='dc'){S.dc=S.ageing=null;S.view='dc';renderView();return;}
-  if(k==='ageing'){S.ageing=null;renderView();return;}
+  if(k==="bucket"){S.bucket=null;nav("landing");return;}
+  if(k==="dc"){S.dc=S.ageing=null;S.view="dc";renderView();return;}
+  if(k==="ageing"){S.ageing=null;renderView();return;}
   S[k]=null;
-  if(k==='region'){const a=document.getElementById('f-reg');if(a)a.value='';}
-  if(k==='bucketing'){const b=document.getElementById('f-bkt');if(b)b.value='';}
+  if(k==="region"){const a=document.getElementById("f-reg");if(a)a.value="";}
+  if(k==="bucketing"){const b=document.getElementById("f-bkt");if(b)b.value="";}
   renderView(); refreshHdr(); refreshBdgs();
 }
-
 function refreshSbF() {
-  const el=document.getElementById('sb-filt');
+  const el=document.getElementById("sb-filt");
   const p=[];
   if(S.bucket)    p.push(`Bucket: <b>${S.bucket}</b>`);
   if(S.dc)        p.push(`DC: <b>${S.dc}</b>`);
   if(S.region)    p.push(`Region: <b>${S.region}</b>`);
   if(S.bucketing) p.push(`Bucketing: <b>${S.bucketing}</b>`);
   if(S.ageing)    p.push(`Ageing: <b>${S.ageing}</b>`);
-  el.innerHTML=p.length?p.join('<br>'):'<span style="color:var(--muted)">None</span>';
+  el.innerHTML=p.length?p.join("<br>"):`<span style="color:var(--muted)">None</span>`;
 }
 
-// ── Navigation ───────────────────────────────────────────────
-function nav(view, x={}) {
-  if(x.bucket!==undefined) S.bucket=x.bucket;
-  if(x.dc!==undefined)     S.dc=x.dc;
-  if(x.ageing!==undefined) S.ageing=x.ageing;
-  if(view==='landing'){S.bucket=S.dc=S.ageing=null;}
-  if(view==='dc')     {S.dc=S.ageing=null;}
-  if(view==='ageing') {S.ageing=null;}
-  S.view=view;
-  document.querySelectorAll('.sb-it[data-v]').forEach(el=>el.classList.toggle('on',el.dataset.v===view||(el.dataset.v==='landing'&&['dc','ageing'].includes(view))));
-  document.getElementById('frow').style.display=view==='landing'?'none':'flex';
-  if(view!=='landing') loadRegOpts();
+// ════════════════════════════════════════════════════════════
+//  NAVIGATION
+// ════════════════════════════════════════════════════════════
+function nav(v, ex={}) {
+  if(ex.bucket!==undefined) S.bucket=ex.bucket;
+  if(ex.dc!==undefined)     S.dc=ex.dc;
+  if(ex.ageing!==undefined) S.ageing=ex.ageing;
+  if(v==="landing"){S.bucket=S.dc=S.ageing=null;}
+  if(v==="dc")     {S.dc=S.ageing=null;}
+  if(v==="ageing") {S.ageing=null;}
+  S.view=v;
+  document.querySelectorAll(".sb-it[data-v]").forEach(el=>el.classList.toggle("on",el.dataset.v===v||(el.dataset.v==="landing"&&["dc","ageing"].includes(v))));
+  document.getElementById("frow").style.display=v==="landing"?"none":"flex";
+  if(v!=="landing") loadRegOpts();
   updateBC(); refreshBdgs(); refreshSbF(); renderView();
 }
-
 function updateBC() {
-  const cr=[{l:'Home',v:'landing'}];
-  if(S.bucket) cr.push({l:S.bucket,v:'dc'});
-  if(S.dc)     cr.push({l:S.dc,v:'ageing'});
-  if(S.ageing) cr.push({l:'Ageing: '+S.ageing,v:'table'});
-  if(S.view==='charts') cr.push({l:'Analytics',v:'charts'});
-  if(S.view==='table'&&!S.ageing) cr.push({l:'Data Table',v:'table'});
-  document.getElementById('bc').innerHTML=cr.map((c,i)=>{
+  const cr=[{l:"Home",v:"landing"}];
+  if(S.bucket) cr.push({l:S.bucket,v:"dc"});
+  if(S.dc)     cr.push({l:S.dc,v:"ageing"});
+  if(S.ageing) cr.push({l:"Ageing: "+S.ageing,v:"table"});
+  if(S.view==="charts") cr.push({l:"Analytics",v:"charts"});
+  if(S.view==="table"&&!S.ageing) cr.push({l:"Data Table",v:"table"});
+  document.getElementById("bc").innerHTML=cr.map((c,i)=>{
     const last=i===cr.length-1;
-    return(i?'<span class="bc-sep">›</span>':'')+`<span class="bc-i${last?' cur':''}" onclick="${last?'':` nav('${c.v}')`}">${e(c.l)}</span>`;
-  }).join('');
+    return(i?`<span class="bc-sep">›</span>`:"")+`<span class="bc-i${last?" cur":""}" onclick="${last?"":` nav('${c.v}')`}">${x(c.l)}</span>`;
+  }).join("");
 }
-
-function doRef(){renderView();refreshHdr();toast('Refreshed');}
-
-function renderView() {
+function doRef(){renderView();refreshHdr();toast("Refreshed");}
+function renderView(){
   switch(S.view){
-    case'landing':rLanding();break;case'dc':rDC();break;
-    case'ageing':rAgeing();break;case'charts':rCharts();break;case'table':rTable();break;
+    case"landing":rLanding();break;case"dc":rDC();break;
+    case"ageing":rAgeing();break;case"charts":rCharts();break;case"table":rTable();break;
   }
 }
 
-// ── Header KPIs ───────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════
+//  HEADER KPIs
+// ════════════════════════════════════════════════════════════
 async function refreshHdr() {
   try {
-    const d = await gsr('getKPIs', F());
-    document.getElementById('hk1').textContent = fmt(d.totalShipments);
-    document.getElementById('hk2').textContent = '₹'+fmtM(d.totalDebitValue);
-    document.getElementById('hk3').textContent = d.avgAgeing+'d';
-    document.getElementById('hk4').textContent = fmt(d.uniqueDCs);
-  } catch(err) { console.warn('KPI error',err); }
+    const d=await apiGet("getKPIs",F());
+    document.getElementById("hk1").textContent=fmt(d.totalShipments);
+    document.getElementById("hk2").textContent="₹"+fmtM(d.totalDebitValue);
+    document.getElementById("hk3").textContent=d.avgAgeing+"d";
+    document.getElementById("hk4").textContent=fmt(d.uniqueDCs);
+  } catch(e){ console.warn("KPI error:",e.message); }
 }
 
 // ════════════════════════════════════════════════════════════
 //  LANDING
 // ════════════════════════════════════════════════════════════
 async function rLanding() {
-  document.getElementById('ct').innerHTML=`
-  <div id="landing">
-    <div class="lbadge"><span class="ldot"></span>LIVE DASHBOARD</div>
-    <h1 class="ltitle">MM Loss <span>Intelligence</span></h1>
-    <p class="lsub">Select a loss bucket to begin drill-down analysis across DCs, ageing bands, and regions.</p>
-    <div class="bkt-grid" id="bktg"><div style="color:var(--muted);padding:20px">Loading…</div></div>
-  </div>`;
+  document.getElementById("ct").innerHTML=`<div id="landing"><div class="lbadge"><span class="ldot"></span>LIVE DASHBOARD</div><h1 class="ltitle">MM Loss <span>Intelligence</span></h1><p class="lsub">Select a loss bucket to begin drill-down analysis across DCs, ageing bands, and regions.</p><div class="bkt-grid" id="bktg"><div style="color:var(--muted);padding:20px">Loading…</div></div></div>`;
   try {
-    const bkts = await gsr('getBuckets');
-    const g=document.getElementById('bktg');
+    const bkts=await apiGet("getBuckets");
+    const g=document.getElementById("bktg");
     if(!bkts.length){g.innerHTML=`<div class="empty"><span class="ei">📭</span><h3>No data yet</h3><p>Click <b>Upload Data</b> to get started.</p></div>`;return;}
-    const ic={'Floor Miss RVP':'📦','RTOND':'🔄'};
-    g.innerHTML=bkts.map(b=>`
-    <div class="bkt" onclick="nav('dc',{bucket:'${e(b.name)}'})">
-      <span class="bkt-ico">${ic[b.name]||'📋'}</span>
-      <div class="bkt-name">${e(b.name)}</div>
-      <div class="bkt-hint">Click to drill down →</div>
+    const ic={"Floor Miss RVP":"📦","RTOND":"🔄"};
+    g.innerHTML=bkts.map(b=>`<div class="bkt" onclick="nav('dc',{bucket:'${x(b.name)}'})">
+      <span class="bkt-ico">${ic[b.name]||"📋"}</span>
+      <div class="bkt-name">${x(b.name)}</div><div class="bkt-hint">Click to drill down →</div>
       <div class="bkt-stats">
         <div><div class="bkt-kv">${fmt(b.shipmentCount)}</div><div class="bkt-kl">Shipments</div></div>
         <div><div class="bkt-kv">₹${fmtM(b.debitValue)}</div><div class="bkt-kl">Debit</div></div>
         <div><div class="bkt-kv">${b.avgAgeing}d</div><div class="bkt-kl">Avg Age</div></div>
-      </div>
-      <div class="bkt-arr">›</div>
-    </div>`).join('');
-  } catch(err){document.getElementById('bktg').innerHTML=`<div class="empty"><span class="ei">⚠️</span><h3>${e(String(err))}</h3></div>`;}
+      </div><div class="bkt-arr">›</div></div>`).join("");
+  } catch(e){document.getElementById("bktg").innerHTML=`<div class="empty"><span class="ei">⚠️</span><h3>${x(e.message)}</h3></div>`;}
 }
 
 // ════════════════════════════════════════════════════════════
 //  DC VIEW
 // ════════════════════════════════════════════════════════════
 async function rDC() {
-  document.getElementById('ct').innerHTML=`<div class="stitle">DC Liability — <span class="ac">${e(S.bucket)}</span><span class="sub">Click a DC for ageing breakdown</span></div><div class="dcg" id="dcg"><div style="color:var(--muted)">Loading…</div></div>`;
+  document.getElementById("ct").innerHTML=`<div class="stitle">DC Liability — <span class="ac">${x(S.bucket)}</span><span class="sub">Click a DC for ageing breakdown</span></div><div class="dcg" id="dcg"><div style="color:var(--muted)">Loading…</div></div>`;
   try {
-    const dcs=await gsr('getDCLiability',F());
-    const g=document.getElementById('dcg');
+    const dcs=await apiGet("getDCLiability",F());
+    const g=document.getElementById("dcg");
     if(!dcs.length){g.innerHTML=`<div class="empty"><span class="ei">📭</span><h3>No DC data</h3></div>`;return;}
     const mx=Math.max(...dcs.map(d=>d.debitValue),1);
-    g.innerHTML=dcs.map((d,i)=>`
-    <div class="dcc" onclick="nav('ageing',{dc:'${e(d.name)}'})">
-      <div class="dc-rank">${i+1}</div>
-      <div class="dc-n" title="${e(d.name)}">${e(d.name)}</div>
+    g.innerHTML=dcs.map((d,i)=>`<div class="dcc" onclick="nav('ageing',{dc:'${x(d.name)}'})">
+      <div class="dc-rank">${i+1}</div><div class="dc-n" title="${x(d.name)}">${x(d.name)}</div>
       <div class="dc-bar-w"><div class="dc-bar" style="width:${Math.round(d.debitValue/mx*100)}%"></div></div>
       <div class="dc-sts">
         <div class="dc-st"><div class="sv">${fmt(d.shipmentCount)}</div><div class="sl">Shipments</div></div>
         <div class="dc-st"><div class="sv">₹${fmtM(d.debitValue)}</div><div class="sl">Debit</div></div>
         <div class="dc-st"><div class="sv">${d.avgAgeing}d</div><div class="sl">Avg Age</div></div>
-      </div>
-    </div>`).join('');
-  } catch(err){document.getElementById('dcg').innerHTML=`<div class="empty"><span class="ei">⚠️</span><h3>${e(String(err))}</h3></div>`;}
+      </div></div>`).join("");
+  } catch(e){document.getElementById("dcg").innerHTML=`<div class="empty"><span class="ei">⚠️</span><h3>${x(e.message)}</h3></div>`;}
 }
 
 // ════════════════════════════════════════════════════════════
 //  AGEING VIEW
 // ════════════════════════════════════════════════════════════
 async function rAgeing() {
-  document.getElementById('ct').innerHTML=`<div class="stitle">Ageing — <span class="ac">${e(S.dc)}</span><span class="sub">Click a band to view shipments</span></div><div class="ageg" id="ageg"><div style="color:var(--muted)">Loading…</div></div>`;
+  document.getElementById("ct").innerHTML=`<div class="stitle">Ageing — <span class="ac">${x(S.dc)}</span><span class="sub">Click a band to view shipments</span></div><div class="ageg" id="ageg"><div style="color:var(--muted)">Loading…</div></div>`;
   try {
-    const ages=await gsr('getAgeingBuckets',F());
-    const g=document.getElementById('ageg');
+    const ages=await apiGet("getAgeingBuckets",F());
+    const g=document.getElementById("ageg");
     if(!ages.length){g.innerHTML=`<div class="empty"><span class="ei">📭</span><h3>No data</h3></div>`;return;}
-    g.innerHTML=ages.map(a=>`
-    <div class="agec" onclick="S.ageing='${e(a.label)}';nav('table')">
-      <div class="age-lbl">${e(a.label)}</div>
+    g.innerHTML=ages.map(a=>`<div class="agec" onclick="S.ageing='${x(a.label)}';nav('table')">
+      <div class="age-lbl">${x(a.label)}</div>
       <div class="age-bw"><div class="age-b" style="width:${a.pct}%"></div></div>
       <div class="age-row">
         <div class="age-c"><div class="cv">${fmt(a.shipmentCount)}</div><div class="cl">₹${fmtM(a.debitValue)}</div></div>
         <div class="age-pct">${a.pct}%</div>
-      </div>
-    </div>`).join('');
-  } catch(err){document.getElementById('ageg').innerHTML=`<div class="empty"><span class="ei">⚠️</span><h3>${e(String(err))}</h3></div>`;}
+      </div></div>`).join("");
+  } catch(e){document.getElementById("ageg").innerHTML=`<div class="empty"><span class="ei">⚠️</span><h3>${x(e.message)}</h3></div>`;}
 }
 
 // ════════════════════════════════════════════════════════════
 //  CHARTS
 // ════════════════════════════════════════════════════════════
 async function rCharts() {
-  document.getElementById('ct').innerHTML=`
-  <div class="stitle">Analytics<span class="sub">Updates with active filters</span></div>
+  document.getElementById("ct").innerHTML=`<div class="stitle">Analytics<span class="sub">Updates with active filters</span></div>
   <div class="chg">
-    ${[['c1','DC Liability – Shipment Count'],['c2','DC Liability – Debit Value (₹)'],
-       ['c3','Region – Shipment Count'],['c4','Region – Debit Value (₹)'],
-       ['c5','Ageing Distribution'],['c6','Bucketing Distribution'],
-       ['c7','Loss Bucket Sub Tagging'],['c8','Top 10 DCs – Debit'],['c9','Top 10 DCs – Count']]
-      .map(([id,t])=>`<div class="chc"><div class="ch-hdr">${t}</div><div class="ch-wrap"><canvas id="${id}"></canvas></div></div>`).join('')}
+    ${[["c1","DC Liability – Shipment Count"],["c2","DC Liability – Debit Value (₹)"],
+       ["c3","Region – Shipment Count"],["c4","Region – Debit Value (₹)"],
+       ["c5","Ageing Distribution"],["c6","Bucketing Distribution"],
+       ["c7","Loss Bucket Sub Tagging"],["c8","Top 10 DCs – Debit"],["c9","Top 10 DCs – Count"]]
+      .map(([id,t])=>`<div class="chc"><div class="ch-hdr">${t}</div><div class="ch-wrap"><canvas id="${id}"></canvas></div></div>`).join("")}
     <div class="chc full"><div class="ch-hdr">Trend – Picked Month</div><div class="ch-wrap tall"><canvas id="c10"></canvas></div></div>
   </div>`;
   try {
-    const d=await gsr('getChartData',F());
-    kC();
-    const P=['#22c55e','#3b82f6','#f59e0b','#a855f7','#ef4444','#06b6d4','#f97316','#ec4899','#84cc16','#14b8a6'];
-    const TC='#8aaa8a',GC='rgba(0,0,0,0.04)';
+    const d=await apiGet("getChartData",F()); kC();
+    const P=["#22c55e","#3b82f6","#f59e0b","#a855f7","#ef4444","#06b6d4","#f97316","#ec4899","#84cc16","#14b8a6"];
+    const TC="#8aaa8a",GC="rgba(0,0,0,0.04)";
     const dO={plugins:{legend:{labels:{color:TC,font:{size:11}}}},scales:{x:{ticks:{color:TC,font:{size:10}},grid:{color:GC}},y:{ticks:{color:TC,font:{size:10}},grid:{color:GC}}}};
-    const mB=(id,lbs,vs,col,h=false)=>{const cx=document.getElementById(id)?.getContext('2d');if(!cx)return;S.charts[id]=new Chart(cx,{type:'bar',data:{labels:lbs,datasets:[{data:vs,backgroundColor:col,borderRadius:5}]},options:{...dO,indexAxis:h?'y':'x',plugins:{legend:{display:false}},scales:h?{x:dO.scales.x,y:{...dO.scales.y,ticks:{color:TC,font:{size:9},maxTicksLimit:10}}}:dO.scales}});};
-    const mP=(id,lbs,vs)=>{const cx=document.getElementById(id)?.getContext('2d');if(!cx)return;S.charts[id]=new Chart(cx,{type:'doughnut',data:{labels:lbs,datasets:[{data:vs,backgroundColor:P,borderWidth:2,borderColor:'#fff'}]},options:{plugins:{legend:{position:'right',labels:{color:TC,font:{size:10},boxWidth:11}}},cutout:'58%'}});};
-    const xy=a=>[a.map(x=>x.x),a.map(x=>x.y)];
-    mB('c1',...xy(d.dcCountChart),P[0]);
-    mB('c2',...xy(d.dcDebitChart),P[1]);
-    mB('c3',...xy(d.regionCountChart),P[2]);
-    mB('c4',...xy(d.regionDebitChart),P[3]);
-    mP('c5',...xy(d.ageDistChart));
-    mP('c6',...xy(d.bucketingChart));
-    mP('c7',...xy(d.subTagChart));
-    mB('c8',...xy(d.top10dcDebit),P[0],true);
-    mB('c9',...xy(d.top10dcCount),P[1],true);
-    const cx=document.getElementById('c10')?.getContext('2d');
-    if(cx) S.charts['c10']=new Chart(cx,{type:'line',data:{labels:d.trendChart.map(x=>x.x),datasets:[{label:'Shipments',data:d.trendChart.map(x=>x.count),borderColor:P[0],backgroundColor:'rgba(34,197,94,0.1)',fill:true,tension:0.4,yAxisID:'y'},{label:'Debit (₹)',data:d.trendChart.map(x=>x.debit),borderColor:P[1],fill:false,tension:0.4,yAxisID:'y1'}]},options:{plugins:{legend:{labels:{color:TC,font:{size:11}}}},scales:{x:{ticks:{color:TC,font:{size:10}},grid:{color:GC}},y:{ticks:{color:TC,font:{size:10}},grid:{color:GC},position:'left'},y1:{ticks:{color:P[1],font:{size:10}},grid:{display:false},position:'right'}}}});
-  } catch(err){document.getElementById('ct').innerHTML+=`<div class="empty"><span class="ei">⚠️</span><h3>${e(String(err))}</h3></div>`;}
+    const mB=(id,lbs,vs,col,h=false)=>{const cx=document.getElementById(id)?.getContext("2d");if(!cx)return;S.charts[id]=new Chart(cx,{type:"bar",data:{labels:lbs,datasets:[{data:vs,backgroundColor:col,borderRadius:5}]},options:{...dO,indexAxis:h?"y":"x",plugins:{legend:{display:false}},scales:h?{x:dO.scales.x,y:{...dO.scales.y,ticks:{color:TC,font:{size:9},maxTicksLimit:10}}}:dO.scales}});};
+    const mP=(id,lbs,vs)=>{const cx=document.getElementById(id)?.getContext("2d");if(!cx)return;S.charts[id]=new Chart(cx,{type:"doughnut",data:{labels:lbs,datasets:[{data:vs,backgroundColor:P,borderWidth:2,borderColor:"#fff"}]},options:{plugins:{legend:{position:"right",labels:{color:TC,font:{size:10},boxWidth:11}}},cutout:"58%"}});};
+    const xy=a=>[a.map(v=>v.x),a.map(v=>v.y)];
+    mB("c1",...xy(d.dcCountChart),P[0]); mB("c2",...xy(d.dcDebitChart),P[1]);
+    mB("c3",...xy(d.regionCountChart),P[2]); mB("c4",...xy(d.regionDebitChart),P[3]);
+    mP("c5",...xy(d.ageDistChart)); mP("c6",...xy(d.bucketingChart)); mP("c7",...xy(d.subTagChart));
+    mB("c8",...xy(d.top10dcDebit),P[0],true); mB("c9",...xy(d.top10dcCount),P[1],true);
+    const cx=document.getElementById("c10")?.getContext("2d");
+    if(cx) S.charts["c10"]=new Chart(cx,{type:"line",data:{labels:d.trendChart.map(v=>v.x),datasets:[{label:"Shipments",data:d.trendChart.map(v=>v.count),borderColor:P[0],backgroundColor:"rgba(34,197,94,0.1)",fill:true,tension:0.4,yAxisID:"y"},{label:"Debit (₹)",data:d.trendChart.map(v=>v.debit),borderColor:P[1],fill:false,tension:0.4,yAxisID:"y1"}]},options:{plugins:{legend:{labels:{color:TC,font:{size:11}}}},scales:{x:{ticks:{color:TC,font:{size:10}},grid:{color:GC}},y:{ticks:{color:TC,font:{size:10}},grid:{color:GC},position:"left"},y1:{ticks:{color:P[1],font:{size:10}},grid:{display:false},position:"right"}}}});
+  } catch(e){document.getElementById("ct").innerHTML+=`<div class="empty"><span class="ei">⚠️</span><h3>${x(e.message)}</h3></div>`;}
 }
-function kC(){for(const c of Object.values(S.charts)){try{c.destroy()}catch{}}S.charts={};}
+function kC(){for(const c of Object.values(S.charts)){try{c.destroy();}catch{}}S.charts={};}
 
 // ════════════════════════════════════════════════════════════
 //  TABLE
 // ════════════════════════════════════════════════════════════
 async function rTable() {
-  document.getElementById('ct').innerHTML=`
-  <div class="stitle">Data Table<span class="sub" id="tcnt"></span></div>
+  document.getElementById("ct").innerHTML=`<div class="stitle">Data Table<span class="sub" id="tcnt"></span></div>
   <div class="ttbar">
     <div class="srch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input id="ts" placeholder="Search…" value="${e(S.search)}" oninput="db(()=>{S.search=this.value;S.page=1;loadTbl()},400)()"/>
+      <input id="ts" placeholder="Search…" value="${x(S.search)}" oninput="db(()=>{S.search=this.value;S.page=1;loadTbl()},400)()"/>
     </div>
     <select class="psel" onchange="S.pageSize=+this.value;S.page=1;loadTbl()">
       <option value="50">50 rows</option><option value="100" selected>100 rows</option>
@@ -669,206 +573,134 @@ async function rTable() {
   <div class="pgn" id="pg"></div></div>`;
   loadTbl();
 }
-
-const NR=new Set(['debit_value','product_value','Max Ageing','Pendency Count','dsp_attempt_number','DV']);
-const MN=new Set(['awb_number','dsp_awb_number','mm_code','trip_id','trip_code','vehicle_number']);
-
+const NR=new Set(["debit_value","product_value","Max Ageing","Pendency Count","dsp_attempt_number","DV"]);
+const MN=new Set(["awb_number","dsp_awb_number","mm_code","trip_id","trip_code","vehicle_number"]);
 async function loadTbl() {
   try {
-    const d=await gsr('getTableData',{...F(),page:S.page,pageSize:S.pageSize,search:S.search,sortCol:S.sortCol,sortDir:S.sortDir});
-    const th=document.getElementById('th'),tb=document.getElementById('tb'),cn=document.getElementById('tcnt'),pg=document.getElementById('pg');
+    const d=await apiGet("getTableData",{...F(),page:S.page,pageSize:S.pageSize,search:S.search,sortCol:S.sortCol,sortDir:S.sortDir});
+    const th=document.getElementById("th"),tb=document.getElementById("tb"),cn=document.getElementById("tcnt"),pg=document.getElementById("pg");
     if(!th)return;
-    if(cn)cn.textContent=fmt(d.total)+' records';
-    th.innerHTML='<tr>'+d.headers.map(h=>{const sc=h===S.sortCol,cl=sc?(S.sortDir==='asc'?'sa':'sd'):'';return`<th class="${cl}" onclick="srt('${e(h)}')">${e(h)}<span class="si"></span></th>`;}).join('')+'</tr>';
-    if(!d.rows.length){tb.innerHTML=`<tr><td colspan="${d.headers.length}" style="padding:48px;text-align:center;color:var(--muted)">No records.</td></tr>`;}
-    else tb.innerHTML=d.rows.map(r=>'<tr>'+d.headers.map((h,i)=>{const v=r[i]??'';const cl=NR.has(h)?'nr':MN.has(h)?'mn':'';const gc=h==='debit_value'?' gb':'';return`<td class="${cl}${gc}">${e(v)}</td>`;}).join('')+'</tr>').join('');
+    if(cn)cn.textContent=fmt(d.total)+" records";
+    th.innerHTML="<tr>"+d.headers.map(h=>{const sc=h===S.sortCol,cl=sc?(S.sortDir==="asc"?"sa":"sd"):"";return`<th class="${cl}" onclick="srt('${x(h)}')">${x(h)}<span class="si"></span></th>`;}).join("")+"</tr>";
+    if(!d.rows.length)tb.innerHTML=`<tr><td colspan="${d.headers.length}" style="padding:48px;text-align:center;color:var(--muted)">No records.</td></tr>`;
+    else tb.innerHTML=d.rows.map(r=>"<tr>"+d.headers.map((h,i)=>{const v=r[i]??"";const cl=NR.has(h)?"nr":MN.has(h)?"mn":"";const gc=h==="debit_value"?" gb":"";return`<td class="${cl}${gc}">${x(v)}</td>`;}).join("")+"</tr>").join("");
     const{page:p,totalPages:tp,total:tt,pageSize:ps}=d;
     const s1=Math.min((p-1)*ps+1,tt),e1=Math.min(p*ps,tt);
-    const rng=pgR(p,tp);
     pg.innerHTML=`<div class="pgi">Showing ${fmt(s1)}–${fmt(e1)} of ${fmt(tt)}</div>
-    <div class="pgbs"><button class="pgb" onclick="gp(${p-1})" ${p<=1?'disabled':''}>‹</button>
-    ${rng.map(x=>x==='…'?`<button class="pgb" disabled>…</button>`:`<button class="pgb${x===p?' cur':''}" onclick="gp(${x})">${x}</button>`).join('')}
-    <button class="pgb" onclick="gp(${p+1})" ${p>=tp?'disabled':''}>›</button></div>`;
-  } catch(err){const tb=document.getElementById('tb');if(tb)tb.innerHTML=`<tr><td colspan="99" style="padding:32px;text-align:center;color:var(--red)">${e(String(err))}</td></tr>`;}
+    <div class="pgbs"><button class="pgb" onclick="gp(${p-1})" ${p<=1?"disabled":""}>‹</button>
+    ${pgR(p,tp).map(v=>v==="…"?`<button class="pgb" disabled>…</button>`:`<button class="pgb${v===p?" cur":""}" onclick="gp(${v})">${v}</button>`).join("")}
+    <button class="pgb" onclick="gp(${p+1})" ${p>=tp?"disabled":""}>›</button></div>`;
+  } catch(e){const tb=document.getElementById("tb");if(tb)tb.innerHTML=`<tr><td colspan="99" style="padding:32px;text-align:center;color:var(--red)">${x(e.message)}</td></tr>`;}
 }
-function pgR(c,t){if(t<=7)return Array.from({length:t},(_,i)=>i+1);if(c<=4)return[1,2,3,4,5,'…',t];if(c>=t-3)return[1,'…',t-4,t-3,t-2,t-1,t];return[1,'…',c-1,c,c+1,'…',t];}
+function pgR(c,t){if(t<=7)return Array.from({length:t},(_,i)=>i+1);if(c<=4)return[1,2,3,4,5,"…",t];if(c>=t-3)return[1,"…",t-4,t-3,t-2,t-1,t];return[1,"…",c-1,c,c+1,"…",t];}
 function gp(p){S.page=p;loadTbl();}
-function srt(col){S.sortCol===col?S.sortDir=S.sortDir==='asc'?'desc':'asc':(S.sortCol=col,S.sortDir='asc');S.page=1;loadTbl();}
-
-async function expCSV() {
-  try{
-    showL('Exporting…');
-    const d=await gsr('getTableData',{...F(),page:1,pageSize:9999999,search:S.search});
-    const csv=[d.headers,...d.rows].map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
-    dl(csv,'mm_loss_export.csv','text/csv');
-  }catch(err){toast('Export failed: '+err,'err');}finally{hideL();}
-}
-async function expXL() {
-  try{
-    showL('Preparing Excel…');
-    const d=await gsr('getTableData',{...F(),page:1,pageSize:9999999,search:S.search});
-    const rows=[d.headers,...d.rows].map(r=>'<tr>'+r.map(v=>`<td>${String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;')}</td>`).join('')+'</tr>').join('');
-    const html=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8"/></head><body><table>${rows}</table></body></html>`;
-    dl(html,'mm_loss_export.xls','application/vnd.ms-excel');
-  }catch(err){toast('Export failed: '+err,'err');}finally{hideL();}
-}
-function dl(c,n,t){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click();}
-
-// ── Region dropdown ───────────────────────────────────────────
-async function loadRegOpts() {
-  try{
-    const rs=await gsr('getRegions');
-    const sel=document.getElementById('f-reg'); if(!sel)return;
-    sel.innerHTML='<option value="">All Regions</option>'+rs.map(r=>`<option value="${e(r)}"${r===S.region?' selected':''}>${e(r)}</option>`).join('');
-  }catch{}
-}
+function srt(col){S.sortCol===col?S.sortDir=S.sortDir==="asc"?"desc":"asc":(S.sortCol=col,S.sortDir="asc");S.page=1;loadTbl();}
+async function expCSV(){try{showL("Exporting…");const d=await apiGet("getTableData",{...F(),page:1,pageSize:9999999,search:S.search});const csv=[d.headers,...d.rows].map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(",")).join("\n");dl(csv,"mm_loss_export.csv","text/csv");}catch(e){toast("Export failed: "+e.message,"err");}finally{hideL();}}
+async function expXL(){try{showL("Preparing Excel…");const d=await apiGet("getTableData",{...F(),page:1,pageSize:9999999,search:S.search});const rows=[d.headers,...d.rows].map(r=>"<tr>"+r.map(v=>`<td>${String(v).replace(/&/g,"&amp;").replace(/</g,"&lt;")}</td>`).join("")+"</tr>").join("");const html=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8"/></head><body><table>${rows}</table></body></html>`;dl(html,"mm_loss_export.xls","application/vnd.ms-excel");}catch(e){toast("Export failed: "+e.message,"err");}finally{hideL();}}
+function dl(c,n,t){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click();}
+async function loadRegOpts(){try{const rs=await apiGet("getRegions");const sel=document.getElementById("f-reg");if(!sel)return;sel.innerHTML="<option value=''>All Regions</option>"+rs.map(r=>`<option value="${x(r)}"${r===S.region?" selected":""}>${x(r)}</option>`).join("");}catch{}}
 
 // ════════════════════════════════════════════════════════════
-//  UPLOAD — uses google.script.run (zero CORS, any file size)
+//  UPLOAD
+//  Uses POST with Content-Type: text/plain to avoid CORS preflight.
+//  Apps Script reads e.postData.contents and parses as JSON.
 // ════════════════════════════════════════════════════════════
-function openUp(){document.getElementById('upmod').classList.add('open');loadLog();}
-function closeUp(){document.getElementById('upmod').classList.remove('open');}
+function openUp(){document.getElementById("upmod").classList.add("open");loadLog();}
+function closeUp(){document.getElementById("upmod").classList.remove("open");}
 function setM(m){
   S.mode=m;
-  document.getElementById('m-app').classList.toggle('on',m==='append');
-  document.getElementById('m-rep').classList.toggle('on',m==='replace');
-  document.getElementById('wbox').style.display=m==='replace'?'block':'none';
+  document.getElementById("m-app").classList.toggle("on",m==="append");
+  document.getElementById("m-rep").classList.toggle("on",m==="replace");
+  document.getElementById("wbox").style.display=m==="replace"?"block":"none";
 }
-const dz=document.getElementById('dz');
-dz.addEventListener('dragover',ev=>{ev.preventDefault();dz.classList.add('over');});
-dz.addEventListener('dragleave',()=>dz.classList.remove('over'));
-dz.addEventListener('drop',ev=>{ev.preventDefault();dz.classList.remove('over');const f=ev.dataTransfer.files[0];if(f)hFile(f);});
+const dzEl=document.getElementById("dz");
+dzEl.addEventListener("dragover",ev=>{ev.preventDefault();dzEl.classList.add("over");});
+dzEl.addEventListener("dragleave",()=>dzEl.classList.remove("over"));
+dzEl.addEventListener("drop",ev=>{ev.preventDefault();dzEl.classList.remove("over");const f=ev.dataTransfer.files[0];if(f)hFile(f);});
 function onPick(ev){const f=ev.target.files[0];if(f)hFile(f);}
-
-function hFile(file) {
+function hFile(file){
   S.file=file;
   const rd=new FileReader();
   rd.onload=ev=>{
     S.csv=pCSV(ev.target.result);
     const rows=S.csv.length-1,cols=S.csv[0]?.length||0;
-    const fi=document.getElementById('finfo');
-    fi.style.display='block';
-    fi.innerHTML=`✓ <b>${e(file.name)}</b> — ${fmt(rows)} rows, ${cols} columns detected`;
-    document.getElementById('bup').disabled=false;
-    setSt(`Ready: ${fmt(rows)} rows will be uploaded.`,'');
+    const fi=document.getElementById("finfo");
+    fi.style.display="block";
+    fi.innerHTML=`✓ <b>${x(file.name)}</b> — ${fmt(rows)} rows, ${cols} columns`;
+    document.getElementById("bup").disabled=false;
+    setSt(`Ready: ${fmt(rows)} rows detected. Click Upload.`,"");
   };
   rd.readAsText(file);
 }
-
-function pCSV(text) {
+function pCSV(text){
   return text.split(/\r?\n/).filter(l=>l.trim()).map(line=>{
-    const cols=[];let cur='',inQ=false;
-    for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'){inQ=!inQ;}else if(c===','&&!inQ){cols.push(cur.trim());cur='';}else cur+=c;}
+    const cols=[];let cur="",inQ=false;
+    for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'){inQ=!inQ;}else if(c===","&&!inQ){cols.push(cur.trim());cur="";}else cur+=c;}
     cols.push(cur.trim());return cols;
   });
 }
 
-// ── The actual upload ─────────────────────────────────────────
-async function doUp() {
-  if(!S.csv?.length){toast('No file selected','warn');return;}
-  const btn=document.getElementById('bup');
-  btn.disabled=true; btn.textContent='Uploading…';
-  document.getElementById('prg').classList.add('show');
-  const pb=document.getElementById('pb');
-
-  const header=S.csv[0];
-  const data=S.csv.slice(1);
-
-  // Build chunks
+async function doUp(){
+  if(!S.csv?.length){toast("No file selected","warn");return;}
+  const btn=document.getElementById("bup");
+  btn.disabled=true; btn.textContent="Uploading…";
+  document.getElementById("prg").classList.add("show");
+  const pb=document.getElementById("pb");
+  const header=S.csv[0], data=S.csv.slice(1);
   const chunks=[];
   for(let i=0;i<data.length;i+=CHUNK) chunks.push(data.slice(i,i+CHUNK));
-
+  const total=chunks.length;
   let written=0;
   try {
-    for(let ci=0;ci<chunks.length;ci++){
+    for(let ci=0;ci<total;ci++){
       const isFirst=ci===0;
-      const mode=isFirst?S.mode:'append';
-      // Each chunk includes the header row so Apps Script knows column order
-      const payload=[header,...chunks[ci]];
-
-      setSt(`Uploading chunk ${ci+1} of ${chunks.length}… (${fmt(written+chunks[ci].length)} of ${fmt(data.length)} rows)`,'');
-
-      // THIS IS THE KEY CALL — google.script.run, no CORS, no limits
-      const result=await gsr('uploadRows', payload, mode, ci, S.file?.name||'upload');
-      if(!result.ok) throw new Error(result.msg||'Upload failed');
-
+      setSt(`Uploading chunk ${ci+1} of ${total}… (${fmt(written+chunks[ci].length)} / ${fmt(data.length)} rows)`,"");
+      const result=await apiPost("uploadChunk",{
+        rows:       [header,...chunks[ci]],
+        mode:       isFirst ? S.mode : "append",
+        chunkIndex: ci,
+        totalChunks:total,
+        filename:   S.file?.name||"upload"
+      });
+      if(!result.ok) throw new Error(result.msg||"Upload failed");
       written+=chunks[ci].length;
-      pb.style.width=Math.round((ci+1)/chunks.length*100)+'%';
+      pb.style.width=Math.round((ci+1)/total*100)+"%";
     }
-
-    // Log the completed upload
-    await gsr('logUpload', S.file?.name||'upload', written, S.mode);
-
-    setSt(`✓ Successfully uploaded ${fmt(written)} rows!`,'ok');
+    setSt(`✓ Uploaded ${fmt(written)} rows successfully!`,"ok");
     toast(`Uploaded ${fmt(written)} rows`);
-
-    // Reset
     S.csv=null;S.file=null;
-    document.getElementById('fi').value='';
-    document.getElementById('finfo').style.display='none';
-    btn.textContent='Upload to Google Sheets';
-    btn.disabled=true;
-
+    document.getElementById("fi").value="";
+    document.getElementById("finfo").style.display="none";
+    btn.textContent="Upload to Google Sheets";btn.disabled=true;
     refreshHdr();
-    if(S.view!=='landing') renderView();
+    if(S.view!=="landing") renderView();
     loadLog();
-  } catch(err) {
-    setSt('Upload failed: '+String(err),'err');
-    toast('Upload failed: '+String(err),'err');
-    btn.textContent='Upload to Google Sheets';
-    btn.disabled=false;
+  } catch(e){
+    setSt("Upload failed: "+e.message,"err");
+    toast("Upload failed: "+e.message,"err");
+    btn.textContent="Upload to Google Sheets";btn.disabled=false;
   }
-  document.getElementById('prg').classList.remove('show');
-  pb.style.width='0%';
+  document.getElementById("prg").classList.remove("show");
+  pb.style.width="0%";
 }
 
-function setSt(msg,type){
-  const el=document.getElementById('sbox');
-  el.style.display='block';
-  el.className='sbox'+(type?' '+type:'');
-  el.textContent=msg;
-}
+function setSt(msg,type){const el=document.getElementById("sbox");el.style.display="block";el.className="sbox"+(type?" "+type:"");el.textContent=msg;}
+async function loadLog(){try{const d=await apiGet("getUploadLog");const tb=document.getElementById("logb");if(!tb)return;if(!d.rows?.length){document.getElementById("logsec").style.display="none";return;}document.getElementById("logsec").style.display="block";tb.innerHTML=d.rows.slice(0,8).map(r=>`<tr><td>${String(r[0]).slice(0,19).replace("T"," ")}</td><td>${x(r[1])}</td><td>${fmt(r[2])}</td><td>${x(r[3])}</td></tr>`).join("");}catch{}}
 
-async function loadLog() {
-  try{
-    const d=await gsr('getUploadLog');
-    const tb=document.getElementById('logb');if(!tb)return;
-    if(!d.rows?.length){document.getElementById('logsec').style.display='none';return;}
-    document.getElementById('logsec').style.display='block';
-    tb.innerHTML=d.rows.slice(0,8).map(r=>`<tr><td>${String(r[0]).slice(0,19).replace('T',' ')}</td><td>${e(r[1])}</td><td>${fmt(r[2])}</td><td>${e(r[3])}</td></tr>`).join('');
-  }catch{}
-}
-
-// ── Utils ─────────────────────────────────────────────────────
-function fmt(n){if(n===null||n===undefined||n==='')return'—';return Number(n).toLocaleString('en-IN');}
-function fmtM(n){const v=Math.abs(Number(n));if(v>=1e7)return(n/1e7).toFixed(2)+' Cr';if(v>=1e5)return(n/1e5).toFixed(1)+'L';if(v>=1000)return(n/1000).toFixed(1)+'K';return String(Math.round(n));}
-function e(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+// ════════════════════════════════════════════════════════════
+//  UTILS
+// ════════════════════════════════════════════════════════════
+function fmt(n){if(n===null||n===undefined||n==="")return"—";return Number(n).toLocaleString("en-IN");}
+function fmtM(n){const v=Math.abs(Number(n));if(v>=1e7)return(n/1e7).toFixed(2)+" Cr";if(v>=1e5)return(n/1e5).toFixed(1)+"L";if(v>=1000)return(n/1000).toFixed(1)+"K";return String(Math.round(n));}
+function x(s){return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
 const _dt={};function db(fn,ms){const k=fn.toString().slice(0,40);return()=>{clearTimeout(_dt[k]);_dt[k]=setTimeout(fn,ms);};}
-function showL(m='Loading…'){document.getElementById('lov').classList.add('show');document.getElementById('spm').textContent=m;}
-function hideL(){document.getElementById('lov').classList.remove('show');}
-function toast(msg,type='ok'){
-  const ic={ok:'✓',err:'✕',warn:'⚠'}[type]||'ℹ';
-  const el=document.createElement('div');
-  el.className='toast'+(type==='err'?' err':type==='warn'?' warn':'');
-  el.innerHTML=`<span class="tio">${ic}</span><span>${e(String(msg))}</span>`;
-  document.getElementById('ts').appendChild(el);
-  setTimeout(()=>el.remove(),4500);
-}
+function showL(m){document.getElementById("lov").classList.add("show");document.getElementById("spm").textContent=m||"Loading…";}
+function hideL(){document.getElementById("lov").classList.remove("show");}
+function toast(msg,type="ok"){const ic={ok:"✓",err:"✕",warn:"⚠"}[type]||"ℹ";const el=document.createElement("div");el.className="toast"+(type==="err"?" err":type==="warn"?" warn":"");el.innerHTML=`<span class="tio">${ic}</span><span>${x(String(msg))}</span>`;document.getElementById("ts").appendChild(el);setTimeout(()=>el.remove(),4500);}
+function spawnP(){setInterval(()=>{const p=document.createElement("div");p.className="particle";const sz=Math.random()*5+2;p.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;background:rgba(34,197,94,${Math.random()*.25+.08});animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*-4}s`;document.getElementById("bg").appendChild(p);setTimeout(()=>p.remove(),22000);},900);}
 
-// ── Particles ─────────────────────────────────────────────────
-function spawnP(){
-  setInterval(()=>{
-    const p=document.createElement('div');p.className='particle';
-    const sz=Math.random()*5+2;
-    p.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;background:rgba(34,197,94,${Math.random()*0.25+0.08});animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*-4}s`;
-    document.getElementById('bg').appendChild(p);
-    setTimeout(()=>p.remove(),22000);
-  },900);
-}
-
-// ── Init ──────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded',()=>{
-  nav('landing');
+document.addEventListener("DOMContentLoaded",()=>{
+  nav("landing");
   refreshHdr();
   spawnP();
 });
