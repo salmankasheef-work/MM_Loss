@@ -799,6 +799,7 @@ async function doUp(){
   const chunks=[];
   for(let i=0;i<data.length;i+=CHUNK)chunks.push(data.slice(i,i+CHUNK));
   const total=chunks.length;
+  let lastResult=null;
 
   // Sequential upload — STAGING sheet accumulates raw rows per chunk.
   // Last chunk triggers consolidate() in Apps Script → writes AGG_DC + AGG_BUCKET.
@@ -816,11 +817,19 @@ async function doUp(){
         filename:   S.file?.name||"upload"
       });
 
-      if(!result.ok) throw new Error(result.msg||`Chunk ${i} failed`);
+      if(!result.ok) throw new Error((result.msg||`Chunk ${i} failed`)+(result.where?" @"+result.where:""));
+      lastResult = result;
     }
 
-    utProg(100,`✓ All ${fmt(data.length)} rows uploaded & aggregated to Google Sheets!`);
-    toast(`✓ Uploaded ${fmt(data.length)} rows → AGG_DC & AGG_BUCKET sheets`);
+    // Check the last result for version + consolidation confirmation
+    const v = lastResult?.version || "unknown";
+    const con = lastResult?.consolidated;
+    if (con && con.ok === false) {
+      throw new Error("Consolidation failed: " + con.msg);
+    }
+    console.log("Backend version:", v, "Consolidation:", JSON.stringify(con));
+    utProg(100,`✓ All ${fmt(data.length)} rows uploaded & aggregated! (backend ${v})`);
+    toast(`✓ Uploaded ${fmt(data.length)} rows → ${con?con.dcKeys+" DC keys":"AGG sheets"}`);
 
     // Reload dashboard data
     C=null; await loadData(); loadLog();
