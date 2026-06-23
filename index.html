@@ -300,9 +300,9 @@ input,select{font-family:inherit}
 // ═══════════════════════════════════════════════════════════
 //  CONFIG
 // ═══════════════════════════════════════════════════════════
-const API   = "https://script.google.com/macros/s/AKfycbzJaWtVQuuxFePYLYbL2nNhYuoVw4DSgBf70vVuo09gvHSISs_XsDBi4xO73glZ1PE/exec";
-const CHUNK = 200;   // rows per upload batch
-const PAR   = 3;     // parallel POST requests (keep low — Apps Script accumulates per-chunk)
+const API   = "https://script.google.com/macros/s/AKfycbzc8wM1-0ZKRiGvf5HyJnYn1q72wsXd7aHuw1geHGIe9UoerPW-MWvDuQ8UmDAi5Vap/exec";
+const CHUNK = 300; // rows per chunk (STAGING sheet approach)
+// Sequential upload — PAR not needed with STAGING approach     // parallel POST requests (keep low — Apps Script accumulates per-chunk)
 
 const MONTH_ORDER = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
@@ -793,36 +793,40 @@ async function doUp(){
   const btn=document.getElementById("bup");
   btn.disabled=true;btn.textContent="Uploading…";
   setSt("Upload started — progress shown bottom-right.","");
-  setTimeout(()=>closeUp(),700);
+  setTimeout(()=>closeUp(),800);
 
   const header=S.csv[0],data=S.csv.slice(1);
   const chunks=[];
   for(let i=0;i<data.length;i+=CHUNK)chunks.push(data.slice(i,i+CHUNK));
   const total=chunks.length;
 
-  // Send chunk 0 first (initialises accumulator in ScriptProperties)
+  // Sequential upload — STAGING sheet accumulates raw rows per chunk.
+  // Last chunk triggers consolidate() in Apps Script → writes AGG_DC + AGG_BUCKET.
+  // Uses STAGING sheet instead — no quota issues.
   try{
-    utProg(1,`Initialising (chunk 1/${total})…`);
-    const r0=await apiPost({rows:[header,...chunks[0]],mode:"replace",chunkIndex:0,totalChunks:total,filename:S.file?.name||"upload",isFirst:true,isLast:total===1});
-    if(!r0.ok)throw new Error(r0.msg||"Chunk 0 failed");
+    for(let i=0;i<total;i++){
+      const isLast=(i===total-1);
+      const pct=Math.round((i+1)/total*100);
+      utProg(pct, `Chunk ${i+1}/${total}${isLast?" — consolidating…":""} · ${fmt(Math.min((i+1)*CHUNK,data.length))} / ${fmt(data.length)} rows`);
 
-    let done=1;
-    utProg(Math.round(done/total*100),`1/${total} ✓`);
+      const result=await apiPost({
+        rows:       [header,...chunks[i]],
+        chunkIndex: i,
+        totalChunks:total,
+        filename:   S.file?.name||"upload"
+      });
 
-    // Remaining chunks — sequential (ScriptProperties accumulator is not concurrent-safe)
-    for(let i=1;i<total;i++){
-      utProg(Math.round(i/total*100),`Chunk ${i+1}/${total} · ${fmt(i*CHUNK)} rows…`);
-      const r=await apiPost({rows:[header,...chunks[i]],mode:"append",chunkIndex:i,totalChunks:total,filename:S.file?.name||"upload",isFirst:false,isLast:i===total-1});
-      if(!r.ok)throw new Error(r.msg||`Chunk ${i} failed`);
-      done++;
-      utProg(Math.round(done/total*100),`${done}/${total} chunks · ${fmt(done*CHUNK)} rows sent`);
+      if(!result.ok) throw new Error(result.msg||`Chunk ${i} failed`);
     }
 
-    utProg(100,`✓ All ${fmt(data.length)} rows aggregated to Google Sheets`);
-    toast(`✓ Uploaded & grouped ${fmt(data.length)} rows`);
-    C=null;loadData();loadLog();
+    utProg(100,`✓ All ${fmt(data.length)} rows uploaded & aggregated to Google Sheets!`);
+    toast(`✓ Uploaded ${fmt(data.length)} rows → AGG_DC & AGG_BUCKET sheets`);
+
+    // Reload dashboard data
+    C=null; await loadData(); loadLog();
     setTimeout(()=>document.getElementById("uptst").classList.remove("show"),6000);
 
+    // Reset form
     S.csv=null;S.file=null;S.uploading=false;
     document.getElementById("fi").value="";
     document.getElementById("finfo").style.display="none";
@@ -834,7 +838,10 @@ async function doUp(){
     toast("Upload failed: "+e.message,"err");
     btn.textContent="Upload & Group to Google Sheets";btn.disabled=false;
     S.uploading=false;
-    setTimeout(()=>{document.getElementById("uptst").classList.remove("show");document.getElementById("uptst").style.borderLeftColor="";},7000);
+    setTimeout(()=>{
+      document.getElementById("uptst").classList.remove("show");
+      document.getElementById("uptst").style.borderLeftColor="";
+    },8000);
   }
 }
 
@@ -846,6 +853,7 @@ async function loadLog(){
 // ═══════════════════════════════════════════════════════════
 //  MONTH SORT HELPER
 // ═══════════════════════════════════════════════════════════
+function monthSortIdx(m){const idx=MONTH_ORDER.findIndex(mo=>String(m).startsWith(mo));return idx===-1?99:idx;}
 function monthSort_(a,b){
   const ai=MONTH_ORDER.findIndex(m=>String(a).startsWith(m));
   const bi=MONTH_ORDER.findIndex(m=>String(b).startsWith(m));
