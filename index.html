@@ -336,7 +336,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}input,sele
 // ═══════════════════════════════════════════════════════════
 //  CONFIG — your Apps Script Web App URL
 // ═══════════════════════════════════════════════════════════
-const API = "https://script.google.com/macros/s/AKfycbzc8wM1-0ZKRiGvf5HyJnYn1q72wsXd7aHuw1geHGIe9UoerPW-MWvDuQ8UmDAi5Vap/exec";
+const API = "https://script.google.com/macros/s/AKfycbx4PVZ3le80VVsaXAlITWu63ju8cqjqFdX7XLV6pJMDgw5Na-wjdajiJSgKznxcl6D-/exec";
 
 const MONTH_ORDER = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 function monthIdx(m){const i=MONTH_ORDER.findIndex(mo=>String(m).startsWith(mo));return i===-1?99:i;}
@@ -770,7 +770,6 @@ async function doUp(){
     setTimeout(()=>document.getElementById("utst").classList.remove("show"),6000);
 
     // ── STEP 4 (background): Stream raw rows to RAW_DATA sheet for export ──
-    // This runs after the dashboard is already live — non-blocking
     uploadRawBackground(S.csv, S.file?.name||"upload");
 
     S.csv=null;S.file=null;S.uploading=false;
@@ -827,28 +826,27 @@ async function uploadRawBackground(csv, filename) {
 // ── Export handler — downloads raw data as CSV ──────────────────────────────
 async function doExport() {
   if (S.rawUploading) {
-    toast("Raw data is still uploading in the background. Please wait a moment then try again.", "warn");
+    toast("Raw data is still uploading — please wait a moment then try again.", "warn");
     return;
   }
   const btn = document.getElementById("btn-export");
-  if (btn) { btn.disabled = true; btn.textContent = "⏳ Preparing…"; }
+  if (btn) { btn.disabled=true; btn.textContent="⏳ Fetching from sheet…"; }
   try {
     const d = await apiGet("downloadRaw");
-    if (!d || !d.ok) throw new Error(d?.msg || "No raw data found. Upload a file first.");
-    // Build CSV string
-    const escape = v => `"${String(v??'').replace(/"/g,'""')}"`;
-    const lines  = [d.headers.map(escape).join(",")];
-    for (const row of d.rows) lines.push(row.map(escape).join(","));
-    const blob = new Blob([lines.join("\n")], { type: "text/csv" });
+    if (!d || !d.ok) throw new Error(d?.msg || "No raw data in sheet. Please upload first.");
+    const esc   = v => `"${String(v??'').replace(/"/g,'""')}"`;
+    const lines = [d.headers.map(esc).join(",")];
+    for (const row of d.rows) lines.push(row.map(esc).join(","));
+    const blob = new Blob([lines.join("\n")], { type:"text/csv;charset=utf-8;" });
     const url  = URL.createObjectURL(blob);
     const a    = document.createElement("a");
-    a.href = url; a.download = "mm_loss_raw_export.csv"; a.click();
-    URL.revokeObjectURL(url);
+    a.href=url; a.download="mm_loss_raw_export.csv"; a.click();
+    setTimeout(()=>URL.revokeObjectURL(url), 5000);
     toast(`✓ Downloaded ${fmt(d.total)} rows`);
   } catch(e) {
     toast("Export failed: " + e.message, "err");
   } finally {
-    if (btn) { btn.disabled = false; btn.textContent = "⬇ Export Raw CSV"; updateExportBtn(); }
+    if (btn) { btn.disabled=false; btn.textContent="⬇ Export Raw CSV"; updateExportBtn(); }
   }
 }
 
