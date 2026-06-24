@@ -829,25 +829,20 @@ async function doExport() {
     toast("Raw data is still uploading — please wait a moment then try again.", "warn");
     return;
   }
-  const btn = document.getElementById("btn-export");
-  if (btn) { btn.disabled=true; btn.textContent="⏳ Fetching from sheet…"; }
-  try {
-    const d = await apiGet("downloadRaw");
-    if (!d || !d.ok) throw new Error(d?.msg || "No raw data in sheet. Please upload first.");
-    const esc   = v => `"${String(v??'').replace(/"/g,'""')}"`;
-    const lines = [d.headers.map(esc).join(",")];
-    for (const row of d.rows) lines.push(row.map(esc).join(","));
-    const blob = new Blob([lines.join("\n")], { type:"text/csv;charset=utf-8;" });
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement("a");
-    a.href=url; a.download="mm_loss_raw_export.csv"; a.click();
-    setTimeout(()=>URL.revokeObjectURL(url), 5000);
-    toast(`✓ Downloaded ${fmt(d.total)} rows`);
-  } catch(e) {
-    toast("Export failed: " + e.message, "err");
-  } finally {
-    if (btn) { btn.disabled=false; btn.textContent="⬇ Export Raw CSV"; updateExportBtn(); }
-  }
+  // Direct Google Sheets CSV export — bypasses Apps Script entirely.
+  // Works for any sheet size, no timeout, no size limit.
+  // NOTE: The sheet must be shared as "Anyone with the link can view".
+  const sheetId   = "1o5P4k6k-UoU55hKMNT2HpGfHY7pokI0No0N-UlWN6dU";
+  const sheetName = encodeURIComponent("STAGING");
+  const exportUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetName}`;
+  const a = document.createElement("a");
+  a.href     = exportUrl;
+  a.download = "mm_loss_raw_export.csv";
+  a.target   = "_blank";   // open in new tab if browser blocks direct download
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  toast("✓ Download started — check your downloads folder.");
 }
 
 function updateExportBtn() {
